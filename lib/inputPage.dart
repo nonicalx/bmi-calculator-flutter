@@ -3,6 +3,9 @@ import 'reuseableCard.dart';
 import 'bottomButtom.dart';
 import 'genderSign.dart';
 import 'constants.dart';
+import 'roundIconBtn.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 enum Gender { male, female }
 
@@ -16,6 +19,34 @@ class _InputPageState extends State<InputPage> {
 
   // var height = 150;
   int height = 150;
+  int weight = 50;
+  int age = 10;
+
+
+  void increamentWeight(){
+    if(weight <= 999){
+      weight++;
+    }
+  }
+
+  void decreamentWeight(){
+    if(weight >= 10){
+      weight--;
+    }
+  }
+
+
+  void increamentAge(){
+    if(age <= 400){
+      age++;
+    }
+  }
+
+  void decreamentAge(){
+    if(age>1){
+      age--;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,17 +111,22 @@ class _InputPageState extends State<InputPage> {
                           Text("$height", style: kNumberTxtStyle),
                           Text('cm', style: kLabelTxtStyle)
                         ]),
-                    Slider(
-                      value: height.toDouble(),
-                      min: kMinHeight,
-                      max: kMaxHeight,
-                      activeColor: Color(kActiveSlideColor),
-                      inactiveColor: Color(kInActiveSlideColor),
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.toInt();
-                        });
-                      },
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                          thumbColor: Color(kActiveSlideColor),
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: Color(kInActiveSlideColor),
+                          overlayColor: Color(0x29EB1555)),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: kMinHeight,
+                        max: kMaxHeight,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.toInt();
+                          });
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -99,10 +135,50 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: Row(children: <Widget>[
                 Expanded(
-                  child: ReuseableCard(),
+                  child: ReuseableCard(
+                    content: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text('WEIGHT', style: kLabelTxtStyle),
+                        Text('$weight', style: kNumberTxtStyle),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(icon: FontAwesomeIcons.minus, onPress: (){setState((){
+                                decreamentWeight();
+                              });}),
+                              
+                              SizedBox(width: 10),
+                              RoundIconButton(icon: FontAwesomeIcons.plus, onPress: (){setState((){
+                                increamentWeight();
+                              });})
+                            ])
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReuseableCard(),
+                  child: ReuseableCard(
+                    content: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text('AGE', style: kLabelTxtStyle),
+                        Text('$age', style: kNumberTxtStyle),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(icon: FontAwesomeIcons.minus, onPress: (){setState((){
+                                decreamentAge();
+                              });}),
+                              
+                              SizedBox(width: 10),
+                              RoundIconButton(icon: FontAwesomeIcons.plus, onPress: (){setState((){
+                                increamentAge();
+                              });}),
+                            ])
+                      ],
+                    ),
+                  ),
                 ),
               ]),
             ),
