@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'constants.dart';
 
 class GenderSign extends StatelessWidget {
   final String gender;
@@ -23,10 +24,7 @@ class GenderSign extends StatelessWidget {
         ),
         Text(
           gender.toUpperCase(),
-          style: TextStyle(
-            fontSize: 18,
-            color: Color(0xFF8D8E98),
-          ),
+          style: kLabelTxtStyle,
         )
       ],
     );
