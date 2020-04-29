@@ -5,7 +5,7 @@ import 'genderSign.dart';
 import 'constants.dart';
 import 'roundIconBtn.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'input_result.dart';
 
 enum Gender { male, female }
 
@@ -22,31 +22,30 @@ class _InputPageState extends State<InputPage> {
   int weight = 50;
   int age = 10;
 
-
-  void increamentWeight(){
-    if(weight <= 999){
+  void increamentWeight() {
+    if (weight <= 999) {
       weight++;
     }
   }
 
-  void decreamentWeight(){
-    if(weight >= 10){
+  void decreamentWeight() {
+    if (weight >= 10) {
       weight--;
     }
   }
 
-
-  void increamentAge(){
-    if(age <= 400){
+  void increamentAge() {
+    if (age <= 400) {
       age++;
     }
   }
 
-  void decreamentAge(){
-    if(age>1){
+  void decreamentAge() {
+    if (age > 1) {
       age--;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,14 +143,21 @@ class _InputPageState extends State<InputPage> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              RoundIconButton(icon: FontAwesomeIcons.minus, onPress: (){setState((){
-                                decreamentWeight();
-                              });}),
-                              
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      decreamentWeight();
+                                    });
+                                  }),
                               SizedBox(width: 10),
-                              RoundIconButton(icon: FontAwesomeIcons.plus, onPress: (){setState((){
-                                increamentWeight();
-                              });})
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPress: () {
+                                    setState(() {
+                                      increamentWeight();
+                                    });
+                                  })
                             ])
                       ],
                     ),
@@ -167,14 +173,21 @@ class _InputPageState extends State<InputPage> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              RoundIconButton(icon: FontAwesomeIcons.minus, onPress: (){setState((){
-                                decreamentAge();
-                              });}),
-                              
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPress: () {
+                                    setState(() {
+                                      decreamentAge();
+                                    });
+                                  }),
                               SizedBox(width: 10),
-                              RoundIconButton(icon: FontAwesomeIcons.plus, onPress: (){setState((){
-                                increamentAge();
-                              });}),
+                              RoundIconButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPress: () {
+                                    setState(() {
+                                      increamentAge();
+                                    });
+                                  }),
                             ])
                       ],
                     ),
@@ -182,7 +195,13 @@ class _InputPageState extends State<InputPage> {
                 ),
               ]),
             ),
-            BottomButton()
+            BottomButton(
+              onPress: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return InputResult(height: height, weight: weight);
+                }));
+              },
+            )
           ],
         ));
   }
