@@ -139,7 +139,15 @@ class _InputPageState extends State<InputPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text('WEIGHT', style: kLabelTxtStyle),
-                        Text('$weight', style: kNumberTxtStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          textBaseline: TextBaseline.alphabetic,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: <Widget>[
+                            Text('$weight', style: kNumberTxtStyle),
+                            Text('kg', style: kLabelTxtStyle)
+                          ],
+                        ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
